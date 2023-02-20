@@ -1,4 +1,27 @@
 # Degree-of-profanity
+
+def calculate_profanity(tweet, slurs):
+    """Calculates the degree of profanity for a single tweet."""
+    words = tweet.split()
+    num_slurs = len(set(words).intersection(slurs))
+    return num_slurs / len(words) if len(words) > 0 else 0
+
+def main():
+    # Set of racial slurs
+    racial_slurs = {'slur1', 'slur2', 'slur3'}
+
+    # Open file of tweets and calculate profanity for each tweet
+    with open('tweets.txt', 'r') as f:
+        for i, line in enumerate(f):
+            tweet = line.strip()
+            profanity = calculate_profanity(tweet, racial_slurs)
+            print(f'Tweet {i+1}: {tweet}\nProfanity: {profanity:.2%}\n')
+
+if __name__ == '__main__':
+    main()
+
+
+
 ## About
 This Python program reads in a file of Twitter tweets, and a set of racial slurs, and calculates the degree of profanity for each sentence in the file. The program assumes that the tweets are stored in a text file, with one tweet per line, and that the set of racial slurs is provided as a Python set, with one slur per element.
 
